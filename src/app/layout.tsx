@@ -8,10 +8,10 @@ import { Providers } from "./providers";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "Homebound — Send Money Home, Pay the Actual Bill",
+  title: "Homebound Remit — Send Money Home, Pay the Actual Bill",
   description:
-    "Pay your family's rent, school fees, or utility bills directly — in seconds, for cents. Built on Stellar.",
-  keywords: ["remittance", "stellar", "USDC", "bill pay", "diaspora", "blockchain"],
+    "Pay your family's rent, school fees, or utility bills directly — in seconds, for cents. Purpose-bound diaspora remittances on Stellar.",
+  keywords: ["remittance", "stellar", "USDC", "bill pay", "diaspora", "soroban", "blockchain"],
 };
 
 export default function RootLayout({

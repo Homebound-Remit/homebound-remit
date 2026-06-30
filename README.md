@@ -12,6 +12,9 @@ Instead of sending $200 that gets spent on the way — a worker in the US pays t
 [![Next.js](https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue?style=flat-square&logo=typescript)](https://typescriptlang.org)
 [![Tests](https://img.shields.io/badge/API_Tests-19%2F19_passing-22c55e?style=flat-square)](./scripts/smoke-fast.mjs)
+[![CI](https://github.com/Homebound-Remit/homebound-remit/actions/workflows/ci.yml/badge.svg)](https://github.com/Homebound-Remit/homebound-remit/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](./LICENSE)
+[![Changelog](https://img.shields.io/badge/Changelog-v0.1.0-orange?style=flat-square)](./CHANGELOG.md)
 
 </div>
 
