@@ -37,6 +37,7 @@ export async function sendMicroTx(
     .build();
 
   tx.sign(kp);
+  // submit transaction and cast result
   const r = await server.submitTransaction(tx) as any;
   return {
     txHash:    r.hash,
