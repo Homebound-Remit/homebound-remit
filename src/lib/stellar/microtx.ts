@@ -37,7 +37,6 @@ export async function sendMicroTx(
     .build();
 
   tx.sign(kp);
-  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   const r = await server.submitTransaction(tx) as any;
   return {
     txHash:    r.hash,
