@@ -301,7 +301,7 @@ export default function BillerPage() {
             <Card>
               <CardBody className="p-5">
                 <p className="text-xs text-white/30 font-mono">
-                  <span className="text-brand-400">// Soroban contract seam</span>
+                  <span className="text-brand-400">{`// Soroban contract seam`}</span>
                   <br />
                   {`register_biller(name, category, walletAddress) → billerId`}
                   <br />

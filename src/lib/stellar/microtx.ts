@@ -1,7 +1,6 @@
 /**
- * Micro self-payment helper
- * Sends 0.0000001 XLM to self with a memo to anchor any operation
- * on-chain and get a real Stellar tx hash — costs ~$0.00001.
+ * Micro self-payment — anchors any operation on-chain with a real tx hash.
+ * Cost: 100 stroops (~$0.000001). Used by bill-pay and voucher flows.
  */
 import { Asset, Keypair, Memo, Operation, TransactionBuilder } from "@stellar/stellar-sdk";
 import { BASE_FEE, NETWORK_PASSPHRASE } from "@/lib/constants";
@@ -38,8 +37,8 @@ export async function sendMicroTx(
     .build();
 
   tx.sign(kp);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const r: any = await server.submitTransaction(tx);
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+  const r = await server.submitTransaction(tx) as any;
   return {
     txHash:    r.hash,
     fee:       String(Number(r.fee_charged ?? BASE_FEE) / 1e7),

@@ -49,7 +49,7 @@ export async function createVoucher(
     .build();
 
   tx.sign(kp);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
   const result: any = await server.submitTransaction(tx);
   const balanceId   = extractBalanceId(result) ?? `mock_${Date.now()}`;
 
@@ -80,7 +80,7 @@ export async function claimVoucher(
     .build();
 
   tx.sign(kp);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
   const r: any = await server.submitTransaction(tx);
   return { txHash: r.hash };
 }
@@ -96,13 +96,13 @@ function extractBalanceId(result: { result_meta_xdr?: string }): string | null {
   try {
     if (!result.result_meta_xdr) return null;
     const meta = xdr.TransactionMeta.fromXDR(result.result_meta_xdr, "base64");
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
     const ops = (meta as any).v2?.().operations?.() ?? [];
     for (const op of ops) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
       for (const change of op.changes?.() ?? []) {
         try {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
           const data = (change as any).created?.()?.data?.();
           if (data?.switch?.()?.name === "claimableBalance") {
             return data.claimableBalance().balanceId().toXDR("hex") as string;

@@ -65,7 +65,7 @@ export async function sendUSDC(
   const tx = builder.setTimeout(30).build();
   tx.sign(kp);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
   const r: any = await server.submitTransaction(tx);
   return {
     txHash:    r.hash,
