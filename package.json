@@ -4,6 +4,16 @@
   "description": "A diaspora remittance super-app on Stellar. Pay rent, school fees, and utilities directly to registered billers in seconds for ~$0.01 — not cash that gets lost on the way. Walletless recipients supported via claimable voucher links.",
   "author": "Homebound Remit",
   "license": "MIT",
+  "homepage": "https://github.com/Homebound-Remit/homebound-remit#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Homebound-Remit/homebound-remit.git"
+  },
+  "keywords": [
+    "stellar", "remittance", "usdc", "soroban", "diaspora",
+    "bill-pay", "nextjs", "blockchain", "defi"
+  ],
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/Homebound-Remit/homebound-remit.git"

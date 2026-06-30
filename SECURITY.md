@@ -1,33 +1,21 @@
 # Security Policy
 
-## Supported Versions
+## Scope
 
-| Version | Supported |
-|---------|-----------|
-| 0.1.x   | ✅ Yes     |
+This is a **testnet-only demo** application. No real funds are involved.
 
 ## Reporting a Vulnerability
 
-**Do not open a public GitHub issue for security vulnerabilities.**
+If you discover a security issue in the codebase (not testnet keys — those are intentionally demo-only):
 
-Please report security issues by emailing the maintainers directly or opening a
-[GitHub Security Advisory](https://github.com/Homebound-Remit/homebound-remit/security/advisories/new).
+1. **Do not** open a public GitHub issue
+2. Email the maintainers or open a [GitHub Security Advisory](https://github.com/Homebound-Remit/homebound-remit/security/advisories/new)
+3. Include steps to reproduce and potential impact
 
-Include:
-- Description of the vulnerability
-- Steps to reproduce
-- Potential impact
-- Suggested fix (optional)
+We will respond within 72 hours.
 
-You will receive a response within 48 hours.
+## Known Non-Issues
 
-## Scope
-
-This is a **testnet demo application**. It handles no real funds.
-
-The following are explicitly **out of scope** for this demo:
-- Secret keys stored in `localStorage` (demo only — production would use a hardware wallet or SEP-30)
-- In-memory stores reset on server restart (production would use a database)
-- No rate limiting on API routes (demo only)
-
-For production deployments, these concerns must be addressed before handling real funds.
+- Testnet secret keys embedded in demo data — intentional, zero real-world value
+- `sodium-native` webpack warnings — cosmetic only, SDK falls back to pure-JS signing
+- In-memory stores reset on server restart — by design for demo mode
