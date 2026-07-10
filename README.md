@@ -8,6 +8,8 @@
 
 Instead of sending $200 that gets spent on the way — a worker in the US pays their mother's rent in Nairobi, the kids' school fees in Manila, or a utility bill in Lagos. Directly. In seconds. For cents.
 
+🌐 **[Live Demo → homebound-remit.vercel.app](https://homebound-remit.vercel.app)**
+
 [![Stellar](https://img.shields.io/badge/Stellar-Testnet-7B61FF?style=flat-square&logo=stellar)](https://stellar.org)
 [![Next.js](https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue?style=flat-square&logo=typescript)](https://typescriptlang.org)
@@ -63,6 +65,9 @@ npm run dev
 
 # 3. Open
 open http://localhost:3000
+
+# Or use the live demo
+open https://homebound-remit.vercel.app
 
 # 4. Run API tests (optional)
 node scripts/smoke-fast.mjs
