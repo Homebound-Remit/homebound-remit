@@ -10,15 +10,6 @@
     "url": "https://github.com/Homebound-Remit/homebound-remit.git"
   },
   "keywords": [
-    "stellar", "remittance", "usdc", "soroban", "diaspora",
-    "bill-pay", "nextjs", "blockchain", "defi"
-  ],
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Homebound-Remit/homebound-remit.git"
-  },
-  "keywords": [
     "stellar",
     "remittance",
     "usdc",
@@ -49,6 +40,7 @@
     "react-dom": "^18.3.1",
     "react-hot-toast": "^2.4.1",
     "tailwind-merge": "^2.4.0",
+    "zod": "^3.23.8",
     "zustand": "^4.5.4"
   },
   "devDependencies": {

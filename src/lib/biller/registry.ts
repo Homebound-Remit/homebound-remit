@@ -1,34 +1,13 @@
 /**
  * Biller Registry — globalThis singleton so state survives
  * Next.js hot-reload and RSC module isolation in dev mode.
+ *
+ * Types are imported from @/types to eliminate duplicate definitions
+ * and ensure a single source of truth across the codebase.
  */
-import type { BillerCategory } from "@/types";
+import type { Biller, BillPayment } from "@/types";
 
-export interface Biller {
-  id: string;
-  name: string;
-  category: BillerCategory;
-  walletAddress: string;
-  logoUrl?: string;
-  country: string;
-  currency: string;
-  active: boolean;
-  createdAt: string;
-}
-
-export interface BillPayment {
-  id: string;
-  billerId: string;
-  billerName: string;
-  senderPublicKey: string;
-  reference: string;
-  amountUSDC: string;
-  amountLocal: string;
-  currency: string;
-  txHash: string;
-  createdAt: string;
-  status: "pending" | "confirmed" | "failed";
-}
+export type { Biller, BillPayment };
 
 declare global {
   // eslint-disable-next-line no-var
