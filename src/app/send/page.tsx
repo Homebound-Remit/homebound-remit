@@ -18,8 +18,7 @@ import {
 } from "lucide-react";
 import toast from "react-hot-toast";
 import Link from "next/link";
-
-type SendMode = "bill_pay" | "cash" | "voucher";
+import type { SendMode } from "@/types";
 
 interface Biller {
   id: string;

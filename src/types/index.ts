@@ -71,22 +71,9 @@ export interface Voucher {
 export type VoucherPublic = Omit<Voucher, "claimantSecret">;
 
 // ─── FX Rates ────────────────────────────────────────────────────────────────
-
-export interface FXRate {
-  currency: string;
-  symbol: string;
-  flag: string;
-  ratePerUSD: number;
-  mark: number;
-}
-
-export interface FXConversion {
-  localAmount: number;
-  effectiveRate: number;
-  markAmount: number;
-  markPct: number;
-  formatted: string;
-}
+// Canonical definitions live in @/lib/fx/rates.ts (imported by consumers directly).
+// Re-export here for any module that wants the type without the runtime cost.
+export type { FXRate, FXConversion } from "@/lib/fx/rates";
 
 // ─── API responses ────────────────────────────────────────────────────────────
 
@@ -116,14 +103,5 @@ export interface SendResult {
 }
 
 // ─── Demo / Seeds ────────────────────────────────────────────────────────────
-
-export interface DemoRecipient {
-  id: string;
-  name: string;
-  relation: string;
-  country: string;
-  flag: string;
-  currency: string;
-  publicKey: string;
-  avatar: string;
-}
+// Canonical definition lives in @/lib/demo/seeds.ts (imported by consumers directly).
+export type { DemoRecipient } from "@/lib/demo/seeds";
