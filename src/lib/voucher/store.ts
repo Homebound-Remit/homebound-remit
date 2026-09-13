@@ -4,23 +4,9 @@
  * Uses a globalThis singleton to survive Next.js hot-reload and RSC
  * module isolation — the same trick Next.js uses for DB connections.
  */
-import type { VoucherStatus } from "@/types";
+import type { Voucher } from "@/types";
 
-export interface Voucher {
-  id: string;
-  balanceId: string;
-  claimantPublicKey: string;
-  claimantSecret: string;
-  senderPublicKey: string;
-  amountUSDC: string;
-  memo?: string;
-  status: VoucherStatus;
-  createdAt: string;
-  expiresAt: string;
-  claimedAt?: string;
-  txHashCreate: string;
-  txHashClaim?: string;
-}
+export type { Voucher };
 
 // Persist across hot-reloads in dev and across RSC module instances
 declare global {

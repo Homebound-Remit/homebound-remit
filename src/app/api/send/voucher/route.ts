@@ -1,25 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { saveVoucher } from "@/lib/voucher/store";
+import { parseBody, SendVoucherSchema } from "@/lib/validation/schemas";
 import { randomBytes } from "crypto";
 
 export async function POST(req: NextRequest) {
   try {
-    const { senderSecret, amount, memo, senderPublicKey } =
-      await req.json() as {
-        senderSecret: string;
-        amount: string;
-        memo?: string;
-        senderPublicKey?: string;
-      };
-
-    if (!senderSecret || !amount) {
-      return NextResponse.json({ ok: false, error: "Missing required fields" }, { status: 400 });
-    }
+    const parsed = await parseBody(req, SendVoucherSchema);
+    if (parsed.error) return parsed.error;
+    const { senderSecret, amount, memo, senderPublicKey } = parsed.data;
 
     const amtNum = parseFloat(amount);
-    if (isNaN(amtNum) || amtNum <= 0) {
-      return NextResponse.json({ ok: false, error: "Invalid amount" }, { status: 400 });
-    }
 
     // Derive sender public key — dynamic import avoids Keypair in RSC module scope
     let senderPub = senderPublicKey ?? "";

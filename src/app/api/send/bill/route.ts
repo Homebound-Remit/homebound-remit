@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getBiller, recordPayment } from "@/lib/biller/registry";
 import { convertToLocal } from "@/lib/fx/rates";
+import { parseBody, SendBillSchema } from "@/lib/validation/schemas";
 import { randomBytes } from "crypto";
 
 /**
@@ -9,21 +10,9 @@ import { randomBytes } from "crypto";
  */
 export async function POST(req: NextRequest) {
   try {
-    const { senderSecret, billerId, reference, amount, senderPublicKey } =
-      await req.json() as {
-        senderSecret: string;
-        billerId: string;
-        reference: string;
-        amount: string;
-        senderPublicKey?: string; // client passes this so we avoid Keypair in RSC
-      };
-
-    if (!senderSecret || !billerId || !reference || !amount) {
-      return NextResponse.json(
-        { ok: false, error: "Missing required fields" },
-        { status: 400 }
-      );
-    }
+    const parsed = await parseBody(req, SendBillSchema);
+    if (parsed.error) return parsed.error;
+    const { senderSecret, billerId, reference, amount, senderPublicKey } = parsed.data;
 
     const biller = getBiller(billerId);
     if (!biller) {
@@ -31,9 +20,6 @@ export async function POST(req: NextRequest) {
     }
 
     const amtNum = parseFloat(amount);
-    if (isNaN(amtNum) || amtNum <= 0) {
-      return NextResponse.json({ ok: false, error: "Invalid amount" }, { status: 400 });
-    }
 
     // Use the senderPublicKey if provided by the client (avoids Keypair.fromSecret in RSC).
     // Fall back to deriving it only if not provided.

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { listBillers, registerBiller, getBiller } from "@/lib/biller/registry";
+import { listBillers, registerBiller } from "@/lib/biller/registry";
+import { parseBody, BillerRegisterSchema } from "@/lib/validation/schemas";
 
 export async function GET() {
   const billers = listBillers();
@@ -8,14 +9,10 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-    const { name, category, walletAddress, country, currency, logoUrl } = body;
-    if (!name || !category || !walletAddress || !country || !currency) {
-      return NextResponse.json(
-        { ok: false, error: "Missing required fields" },
-        { status: 400 }
-      );
-    }
+    const parsed = await parseBody(req, BillerRegisterSchema);
+    if (parsed.error) return parsed.error;
+    const { name, category, walletAddress, country, currency, logoUrl } = parsed.data;
+
     const biller = registerBiller({
       name, category, walletAddress, country, currency,
       logoUrl: logoUrl ?? undefined,

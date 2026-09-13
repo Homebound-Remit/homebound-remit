@@ -1,20 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { setupTestnetAccount } from "@/lib/stellar/faucet";
 import { DEMO_USDC_BALANCE } from "@/lib/constants";
+import { parseBody, FaucetSchema } from "@/lib/validation/schemas";
 
 export async function POST(req: NextRequest) {
   try {
-    const { publicKey, secret } = await req.json() as {
-      publicKey?: string;
-      secret?: string;
-    };
-
-    if (!publicKey || !secret) {
-      return NextResponse.json(
-        { ok: false, error: "publicKey and secret are required" },
-        { status: 400 }
-      );
-    }
+    const parsed = await parseBody(req, FaucetSchema);
+    if (parsed.error) return parsed.error;
+    const { publicKey, secret } = parsed.data;
 
     await setupTestnetAccount(publicKey, secret);
 
